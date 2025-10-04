@@ -1,0 +1,154 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id               String       @id @default(cuid())
+  clerkId          String       @unique
+  email            String       @unique
+  name             String
+  avatar           String?
+  credits          Int          @default(0)
+  totalCreditsUsed Int          @default(0)
+  tier             UserTier     @default(FREE)
+  createdAt        DateTime     @default(now())
+  updatedAt        DateTime     @updatedAt
+  generations      Generation[]
+  images           UserImage[]
+
+  @@map("users")
+}
+
+model Preset {
+  id           String       @id @default(cuid())
+  title        String
+  description  String
+  slug         String       @unique
+  prompt       String
+  badge        String
+  badgeColor   String
+  credits      Int
+  category     String
+  provider     Provider     @default(NANO_BANANA)
+  owner        String?
+  examples     Json?
+  thumbnailUrl String?
+  isActive     Boolean      @default(true)
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+  inputFields  Json?
+  variables    Json?
+  generations  Generation[]
+
+  @@map("presets")
+}
+
+model UserImage {
+  id               String       @id @default(cuid())
+  userId           String
+  fileName         String
+  originalFileName String
+  fileSize         Int
+  mimeType         String
+  url              String
+  thumbnailUrl     String
+  width            Int
+  height           Int
+  uploadedAt       DateTime     @default(now())
+  generations      Generation[]
+  user             User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("user_images")
+}
+
+model Generation {
+  id               String             @id @default(cuid())
+  userId           String
+  presetId         String
+  userImageId      String?
+  aspectRatio      AspectRatio?
+  outputSize       OutputSize
+  isPrivate        Boolean            @default(false)
+  hasWatermark     Boolean            @default(true)
+  inputValues      Json
+  finalPrompt      String?
+  status           GenerationStatus   @default(PENDING)
+  creditsUsed      Int
+  processingTime   Int?
+  outputUrl        String?
+  errorMessage     String?
+  idempotencyKey   String?            @unique
+  createdAt        DateTime           @default(now())
+  completedAt      DateTime?
+  updatedAt        DateTime           @updatedAt
+  results          GenerationResult[]
+  preset           Preset             @relation(fields: [presetId], references: [id])
+  user             User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  originalImage    UserImage?         @relation(fields: [userImageId], references: [id])
+
+  @@map("generations")
+}
+
+model GenerationResult {
+  id             String     @id @default(cuid())
+  generationId   String
+  url            String
+  thumbnailUrl   String
+  width          Int
+  height         Int
+  fileSize       Int
+  processingTime Int
+  createdAt      DateTime   @default(now())
+  generation     Generation @relation(fields: [generationId], references: [id], onDelete: Cascade)
+
+  @@map("generation_results")
+}
+
+enum AspectRatio {
+  SQUARE
+  PORTRAIT
+  VERTICAL
+  LANDSCAPE
+  STANDARD
+}
+
+enum OutputSize {
+  SQUARE
+  PORTRAIT
+  VERTICAL
+  LANDSCAPE
+  STANDARD
+}
+
+enum GenerationStatus {
+  PENDING
+  QUEUED
+  RUNNING
+  COMPLETED
+  FAILED
+  CANCELLED
+}
+
+enum UserTier {
+  FREE
+  PRO
+  ENTERPRISE
+}
+
+enum Provider {
+  OPENAI
+  FLUX_DEV
+  FLUX_PRO
+  FLUX_SCHNELL
+  REPLICATE_OPENAI
+  SEEDREAM
+  STABLE_DIFFUSION
+  FLUX_KONTEXT
+  NANO_BANANA
+}
