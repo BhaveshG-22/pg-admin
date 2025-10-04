@@ -9,7 +9,7 @@ export async function GET(request: NextRequest) {
     const sort = searchParams.get('sort') || 'newest'
     const limit = parseInt(searchParams.get('limit') || '50')
 
-    const where: any = {}
+    const where: Record<string, unknown> = {}
 
     // Search filter
     if (search) {
@@ -25,7 +25,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Sort order
-    let orderBy: any = {}
+    let orderBy: Record<string, unknown> = {}
     if (sort === 'newest') {
       orderBy = { createdAt: 'desc' }
     } else if (sort === 'oldest') {

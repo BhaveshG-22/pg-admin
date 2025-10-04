@@ -31,6 +31,7 @@ interface Generation {
     id: string
     name: string
     email: string
+    avatar: string | null
     tier: string
   }
   preset: {

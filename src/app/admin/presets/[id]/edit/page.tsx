@@ -60,11 +60,12 @@ export default function EditPresetPage({
   const [error, setError] = useState('')
   const [preset, setPreset] = useState<Preset | null>(null)
   const [testInput, setTestInput] = useState('{}')
-  const [testResult, setTestResult] = useState<any>(null)
+  const [testResult, setTestResult] = useState<Record<string, unknown> | null>(null)
   const [testing, setTesting] = useState(false)
 
   useEffect(() => {
     fetchPreset()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id])
 
   const fetchPreset = async () => {
@@ -72,7 +73,7 @@ export default function EditPresetPage({
       const res = await fetch(`/api/admin/presets/${id}`)
       const data = await res.json()
       setPreset(data)
-    } catch (err) {
+    } catch {
       setError('Failed to load preset')
     } finally {
       setLoading(false)
@@ -98,8 +99,8 @@ export default function EditPresetPage({
       }
 
       router.push('/admin/presets')
-    } catch (err: any) {
-      setError(err.message)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to update preset')
     } finally {
       setSaving(false)
     }
@@ -113,7 +114,7 @@ export default function EditPresetPage({
         method: 'DELETE',
       })
       router.push('/admin/presets')
-    } catch (err) {
+    } catch {
       setError('Failed to delete preset')
     }
   }
@@ -130,7 +131,7 @@ export default function EditPresetPage({
       a.href = url
       a.download = `${preset?.slug || 'preset'}.json`
       a.click()
-    } catch (err) {
+    } catch {
       setError('Failed to export preset')
     }
   }
@@ -145,7 +146,7 @@ export default function EditPresetPage({
       })
       const data = await res.json()
       setTestResult(data)
-    } catch (err) {
+    } catch {
       setTestResult({ error: 'Test failed' })
     } finally {
       setTesting(false)

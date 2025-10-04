@@ -9,7 +9,7 @@ export async function GET(request: NextRequest) {
     const provider = searchParams.get('provider')
     const sort = searchParams.get('sort') || 'newest'
 
-    const where: any = {}
+    const where: Record<string, unknown> = {}
 
     // Search filter
     if (search) {
@@ -32,7 +32,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Sort order
-    let orderBy: any = {}
+    let orderBy: Record<string, unknown> = {}
     if (sort === 'newest') {
       orderBy = { createdAt: 'desc' }
     } else if (sort === 'oldest') {
@@ -77,10 +77,10 @@ export async function POST(request: NextRequest) {
     })
 
     return NextResponse.json(preset)
-  } catch (error: any) {
+  } catch (error) {
     console.error('Error creating preset:', error)
 
-    if (error.code === 'P2002') {
+    if (error && typeof error === 'object' && 'code' in error && error.code === 'P2002') {
       return NextResponse.json(
         { error: 'Slug already exists' },
         { status: 400 }

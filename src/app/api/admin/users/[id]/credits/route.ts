@@ -51,10 +51,10 @@ export async function PATCH(
     }
 
     return NextResponse.json(updatedUser)
-  } catch (error: any) {
+  } catch (error) {
     console.error('Error updating credits:', error)
 
-    if (error.code === 'P2025') {
+    if (error && typeof error === 'object' && 'code' in error && error.code === 'P2025') {
       return NextResponse.json({ error: 'User not found' }, { status: 404 })
     }
 

@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { LayoutDashboard, Image, Users, Settings } from 'lucide-react'
+import { LayoutDashboard, Image, Users } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 const navItems = [

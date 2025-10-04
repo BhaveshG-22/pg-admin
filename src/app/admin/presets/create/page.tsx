@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { Sparkles } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -34,7 +35,9 @@ const CATEGORIES = ['Portrait', 'Style', 'Effect', 'Background', 'Enhancement']
 export default function CreatePresetPage() {
   const router = useRouter()
   const [loading, setLoading] = useState(false)
+  const [analyzing, setAnalyzing] = useState(false)
   const [error, setError] = useState('')
+  const [llmPrompt, setLlmPrompt] = useState('')
   const [formData, setFormData] = useState({
     title: '',
     slug: '',
@@ -68,8 +71,8 @@ export default function CreatePresetPage() {
       }
 
       router.push('/admin/presets')
-    } catch (err: any) {
-      setError(err.message)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to create preset')
     } finally {
       setLoading(false)
     }
@@ -81,6 +84,52 @@ export default function CreatePresetPage() {
       title: value,
       slug: prev.slug || value.toLowerCase().replace(/\s+/g, '-'),
     }))
+  }
+
+  const handleAnalyzePrompt = async () => {
+    if (!llmPrompt.trim()) {
+      setError('Please enter a prompt to analyze')
+      return
+    }
+
+    setAnalyzing(true)
+    setError('')
+
+    try {
+      const res = await fetch('/api/admin/presets/analyze', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ prompt: llmPrompt }),
+      })
+
+      const data = await res.json()
+
+      if (!res.ok) {
+        throw new Error(data.error || 'Failed to analyze prompt')
+      }
+
+      // Fill form with analyzed data
+      setFormData({
+        title: data.title || '',
+        slug: data.slug || '',
+        description: data.description || '',
+        category: data.category || '',
+        provider: data.provider || 'NANO_BANANA',
+        credits: String(data.credits || 1),
+        isActive: true,
+        badge: data.badge || '',
+        badgeColor: data.badgeColor || '',
+        thumbnailUrl: formData.thumbnailUrl, // Keep existing thumbnail
+        prompt: data.prompt || llmPrompt,
+      })
+
+      // Clear the LLM prompt input after successful analysis
+      setLlmPrompt('')
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to analyze prompt')
+    } finally {
+      setAnalyzing(false)
+    }
   }
 
   return (
@@ -97,6 +146,48 @@ export default function CreatePresetPage() {
           {error}
         </div>
       )}
+
+      <Card className="mb-6">
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Sparkles className="h-5 w-5" />
+            AI-Powered Form Filling
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div>
+            <Label htmlFor="llmPrompt">Paste Your Prompt</Label>
+            <Textarea
+              id="llmPrompt"
+              value={llmPrompt}
+              onChange={(e) => setLlmPrompt(e.target.value)}
+              rows={6}
+              placeholder="Paste your detailed image generation prompt here. For example:&#10;&#10;A birthday celebration photoshoot in a stylish modern studio setup. A young man is sitting casually on the floor in front of a decorated wall with silver balloons..."
+            />
+            <p className="text-sm text-muted-foreground mt-2">
+              AI will analyze your prompt and automatically fill the form fields below
+            </p>
+          </div>
+          <Button
+            type="button"
+            onClick={handleAnalyzePrompt}
+            disabled={analyzing || !llmPrompt.trim()}
+            className="w-full"
+          >
+            {analyzing ? (
+              <>
+                <Sparkles className="mr-2 h-4 w-4 animate-spin" />
+                Analyzing Prompt...
+              </>
+            ) : (
+              <>
+                <Sparkles className="mr-2 h-4 w-4" />
+                Auto-Fill Form with AI
+              </>
+            )}
+          </Button>
+        </CardContent>
+      </Card>
 
       <form onSubmit={handleSubmit}>
         <Card className="mb-6">

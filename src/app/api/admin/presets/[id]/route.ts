@@ -54,17 +54,17 @@ export async function PUT(
     })
 
     return NextResponse.json(preset)
-  } catch (error: any) {
+  } catch (error) {
     console.error('Error updating preset:', error)
 
-    if (error.code === 'P2002') {
+    if (error && typeof error === 'object' && 'code' in error && error.code === 'P2002') {
       return NextResponse.json(
         { error: 'Slug already exists' },
         { status: 400 }
       )
     }
 
-    if (error.code === 'P2025') {
+    if (error && typeof error === 'object' && 'code' in error && error.code === 'P2025') {
       return NextResponse.json(
         { error: 'Preset not found' },
         { status: 404 }
@@ -89,10 +89,10 @@ export async function DELETE(
     })
 
     return NextResponse.json({ success: true })
-  } catch (error: any) {
+  } catch (error) {
     console.error('Error deleting preset:', error)
 
-    if (error.code === 'P2025') {
+    if (error && typeof error === 'object' && 'code' in error && error.code === 'P2025') {
       return NextResponse.json(
         { error: 'Preset not found' },
         { status: 404 }
