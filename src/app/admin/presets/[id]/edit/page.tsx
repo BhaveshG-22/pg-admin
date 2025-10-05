@@ -384,15 +384,23 @@ export default function EditPresetPage({
                 />
               </div>
 
-              <div className="flex items-center space-x-2 pt-8">
-                <Switch
-                  id="isActive"
-                  checked={preset.isActive}
-                  onCheckedChange={(checked) =>
-                    setPreset({ ...preset, isActive: checked })
-                  }
-                />
-                <Label htmlFor="isActive">Active</Label>
+              <div className="pt-6">
+                <Label htmlFor="isActive" className="mb-3 block">Visibility</Label>
+                <div className="flex items-center space-x-2">
+                  <Switch
+                    id="isActive"
+                    checked={preset.isActive}
+                    onCheckedChange={(checked) =>
+                      setPreset({ ...preset, isActive: checked })
+                    }
+                  />
+                  <span className="text-sm text-muted-foreground">
+                    {preset.isActive ? 'Visible to users' : 'Hidden from users'}
+                  </span>
+                </div>
+                <p className="text-xs text-muted-foreground mt-2">
+                  When turned off, this preset will be hidden from users but remain in the database
+                </p>
               </div>
             </div>
           </CardContent>

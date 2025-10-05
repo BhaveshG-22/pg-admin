@@ -20,7 +20,6 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
-import { Switch } from '@/components/ui/switch'
 
 interface Preset {
   id: string
@@ -163,9 +162,9 @@ export default function PresetsListPage() {
               <TableHead>Title</TableHead>
               <TableHead>Slug</TableHead>
               <TableHead>Provider</TableHead>
-              <TableHead>Credits</TableHead>
-              <TableHead>Generations</TableHead>
-              <TableHead>Status</TableHead>
+              <TableHead className="text-center">Credits</TableHead>
+              <TableHead className="text-center">Generations</TableHead>
+              <TableHead>Visibility</TableHead>
               <TableHead>Created</TableHead>
               <TableHead>Actions</TableHead>
             </TableRow>
@@ -189,17 +188,21 @@ export default function PresetsListPage() {
                   {preset.slug}
                 </TableCell>
                 <TableCell>{preset.provider}</TableCell>
-                <TableCell>{preset.credits}</TableCell>
-                <TableCell>
+                <TableCell className="text-center">{preset.credits}</TableCell>
+                <TableCell className="text-center">
                   <span className="text-muted-foreground">
                     {preset._count?.generations || 0}
                   </span>
                 </TableCell>
                 <TableCell>
-                  <Switch
-                    checked={preset.isActive}
-                    onCheckedChange={() => toggleStatus(preset.id)}
-                  />
+                  <button
+                    onClick={() => toggleStatus(preset.id)}
+                    className={`text-sm font-medium hover:underline cursor-pointer ${
+                      preset.isActive ? 'text-green-600' : 'text-red-600'
+                    }`}
+                  >
+                    {preset.isActive ? 'Visible' : 'Hidden'}
+                  </button>
                 </TableCell>
                 <TableCell>
                   {new Date(preset.createdAt).toLocaleDateString()}
