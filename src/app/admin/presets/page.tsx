@@ -31,6 +31,9 @@ interface Preset {
   isActive: boolean
   thumbnailUrl: string | null
   createdAt: string
+  _count?: {
+    generations: number
+  }
 }
 
 export default function PresetsListPage() {
@@ -161,6 +164,7 @@ export default function PresetsListPage() {
               <TableHead>Slug</TableHead>
               <TableHead>Provider</TableHead>
               <TableHead>Credits</TableHead>
+              <TableHead>Generations</TableHead>
               <TableHead>Status</TableHead>
               <TableHead>Created</TableHead>
               <TableHead>Actions</TableHead>
@@ -186,6 +190,11 @@ export default function PresetsListPage() {
                 </TableCell>
                 <TableCell>{preset.provider}</TableCell>
                 <TableCell>{preset.credits}</TableCell>
+                <TableCell>
+                  <span className="text-muted-foreground">
+                    {preset._count?.generations || 0}
+                  </span>
+                </TableCell>
                 <TableCell>
                   <Switch
                     checked={preset.isActive}

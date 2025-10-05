@@ -44,6 +44,13 @@ export async function GET(request: NextRequest) {
     const presets = await prisma.preset.findMany({
       where,
       orderBy,
+      include: {
+        _count: {
+          select: {
+            generations: true
+          }
+        }
+      }
     })
 
     return NextResponse.json(presets)

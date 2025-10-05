@@ -50,6 +50,7 @@ export default function CreatePresetPage() {
   const [llmPrompt, setLlmPrompt] = useState('')
   const [expectedVariables, setExpectedVariables] = useState('')
   const [genderPreference, setGenderPreference] = useState<'neutral' | 'male' | 'female'>('neutral')
+  const [variableMode, setVariableMode] = useState<'with_variables' | 'no_variables'>('with_variables')
   const [inputFields, setInputFields] = useState<InputField[]>([])
   const [formData, setFormData] = useState({
     title: '',
@@ -112,6 +113,47 @@ export default function CreatePresetPage() {
     setError('')
 
     try {
+      // NO VARIABLES MODE - Just apply gender preference
+      if (variableMode === 'no_variables') {
+        const res = await fetch('/api/admin/presets/analyze', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            prompt: llmPrompt,
+            genderPreference: genderPreference,
+            step: 'no_variables'
+          }),
+        })
+
+        const data = await res.json()
+
+        if (!res.ok) {
+          throw new Error(data.error || 'Failed to analyze prompt')
+        }
+
+        console.log('No Variables Mode - Response:', data)
+
+        // Fill form with analyzed data
+        setFormData({
+          title: data.title || '',
+          slug: data.slug || '',
+          description: data.description || '',
+          category: data.category || '',
+          provider: data.provider || 'NANO_BANANA',
+          credits: '5',
+          isActive: true,
+          badge: data.badge || '',
+          badgeColor: data.badgeColor || '',
+          thumbnailUrl: formData.thumbnailUrl,
+          prompt: data.prompt || llmPrompt,
+        })
+
+        // Clear input fields in no variables mode
+        setInputFields([])
+        return
+      }
+
+      // WITH VARIABLES MODE - Original two-step process
       // STEP 1: Get metadata and input fields
       const res1 = await fetch('/api/admin/presets/analyze', {
         method: 'POST',
@@ -306,18 +348,53 @@ export default function CreatePresetPage() {
           </div>
 
           <div>
-            <Label htmlFor="expectedVariables">Expected Variables (Optional)</Label>
-            <Textarea
-              id="expectedVariables"
-              value={expectedVariables}
-              onChange={(e) => setExpectedVariables(e.target.value)}
-              rows={3}
-              placeholder="Specify which variables to extract, one per line:&#10;subject&#10;location&#10;style&#10;mood"
-            />
+            <Label>Variable Mode</Label>
+            <div className="flex gap-4 mt-2">
+              <label className="flex items-center gap-2 cursor-pointer">
+                <input
+                  type="radio"
+                  name="variableMode"
+                  value="with_variables"
+                  checked={variableMode === 'with_variables'}
+                  onChange={(e) => setVariableMode(e.target.value as 'with_variables' | 'no_variables')}
+                  className="w-4 h-4"
+                />
+                <span className="text-sm">With Variables</span>
+              </label>
+              <label className="flex items-center gap-2 cursor-pointer">
+                <input
+                  type="radio"
+                  name="variableMode"
+                  value="no_variables"
+                  checked={variableMode === 'no_variables'}
+                  onChange={(e) => setVariableMode(e.target.value as 'with_variables' | 'no_variables')}
+                  className="w-4 h-4"
+                />
+                <span className="text-sm">No Variables</span>
+              </label>
+            </div>
             <p className="text-sm text-muted-foreground mt-2">
-              List the variable names you want to extract (one per line). If left empty, AI will auto-detect variables.
+              {variableMode === 'with_variables'
+                ? 'Create dynamic variables that users can customize'
+                : 'Use the prompt as-is with only gender-specific modifications'}
             </p>
           </div>
+
+          {variableMode === 'with_variables' && (
+            <div>
+              <Label htmlFor="expectedVariables">Expected Variables (Optional)</Label>
+              <Textarea
+                id="expectedVariables"
+                value={expectedVariables}
+                onChange={(e) => setExpectedVariables(e.target.value)}
+                rows={3}
+                placeholder="Specify which variables to extract, one per line:&#10;subject&#10;location&#10;style&#10;mood"
+              />
+              <p className="text-sm text-muted-foreground mt-2">
+                List the variable names you want to extract (one per line). If left empty, AI will auto-detect variables.
+              </p>
+            </div>
+          )}
 
           <div>
             <Label>Gender Preference</Label>

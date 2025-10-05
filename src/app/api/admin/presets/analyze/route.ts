@@ -23,6 +23,11 @@ export async function POST(request: NextRequest) {
       )
     }
 
+    // NO VARIABLES MODE: Just generate metadata and apply gender preference
+    if (step === 'no_variables') {
+      return await generateNoVariablesPreset(prompt, genderPreference)
+    }
+
     // STEP 2: Generate prompt template with ONLY allowed variables
     if (step === 'prompt' && allowedVariables && Array.isArray(allowedVariables)) {
       return await generatePromptTemplate(prompt, allowedVariables, genderPreference)
@@ -240,6 +245,73 @@ Notice: "young man" was changed to "young person" (static text), only "blue" bec
     return NextResponse.json(
       {
         error: 'Failed to generate prompt template',
+        details: error instanceof Error ? error.message : String(error),
+      },
+      { status: 500 }
+    )
+  }
+}
+
+// NO VARIABLES MODE: Generate preset with only gender modifications
+async function generateNoVariablesPreset(
+  originalPrompt: string,
+  genderPreference: string
+) {
+  try {
+    // Gender preference instructions
+    const genderInstructions: Record<string, string> = {
+      neutral: 'Make the prompt GENDER NEUTRAL. Replace gender-specific terms (e.g., "man", "woman", "boy", "girl", "he", "she") with neutral alternatives (e.g., "person", "individual", "they").',
+      male: 'Keep the prompt MALE SPECIFIC. Use male pronouns and terms (e.g., "man", "boy", "he", "his").',
+      female: 'Make the prompt FEMALE SPECIFIC. Use female pronouns and terms (e.g., "woman", "girl", "she", "her").'
+    }
+
+    const genderInstruction = genderInstructions[genderPreference as keyof typeof genderInstructions] || genderInstructions.neutral
+
+    const completion = await openai.chat.completions.create({
+      model: 'gpt-4o-mini',
+      messages: [
+        {
+          role: 'system',
+          content: `You are an AI assistant that analyzes image generation prompts and generates preset metadata WITHOUT creating any variables.
+
+Your task:
+1. Analyze the prompt and generate metadata (title, description, badge, etc.)
+2. Apply gender preference to the prompt
+3. DO NOT create any variables or use {{variable}} syntax
+4. Return the prompt as plain text with only gender modifications applied
+
+Gender preference: ${genderInstruction}
+
+Return ONLY a JSON object with this structure:
+{
+  "title": "A short, catchy title (3-6 words)",
+  "description": "A brief description of what this preset does (1-2 sentences)",
+  "slug": "a-url-friendly-slug",
+  "badge": "Add a relevant emoji followed by text (e.g., '🎭 Film Noir', '✨ Featured', '🔥 Trending', '💎 Premium', '🎨 Creative')",
+  "badgeColor": "Tailwind CSS classes separated by spaces for background, text, and border (e.g., 'bg-gray-100 text-gray-800 border-gray-200', 'bg-blue-100 text-blue-800 border-blue-200', 'bg-purple-100 text-purple-800 border-purple-200')",
+  "category": "One of: Portrait, Style, Effect, Background, Enhancement",
+  "provider": "NANO_BANANA",
+  "prompt": "The prompt with ONLY gender modifications applied - NO VARIABLES"
+}
+
+CRITICAL: The "prompt" field must be plain text with NO {{variable}} placeholders. Only apply gender-specific changes.`,
+        },
+        {
+          role: 'user',
+          content: originalPrompt,
+        },
+      ],
+      temperature: 0.7,
+      response_format: { type: 'json_object' },
+    })
+
+    const result = JSON.parse(completion.choices[0].message.content || '{}')
+    return NextResponse.json(result)
+  } catch (error) {
+    console.error('Error generating no-variables preset:', error)
+    return NextResponse.json(
+      {
+        error: 'Failed to generate preset',
         details: error instanceof Error ? error.message : String(error),
       },
       { status: 500 }

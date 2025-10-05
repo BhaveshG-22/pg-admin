@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { Search, ExternalLink, User as UserIcon } from 'lucide-react'
+import { Search, ExternalLink, User as UserIcon, Trash2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import {
@@ -79,6 +79,28 @@ export default function GenerationsListPage() {
       setGenerations([])
     } finally {
       setLoading(false)
+    }
+  }
+
+  const deleteGeneration = async (id: string) => {
+    if (!confirm('Are you sure you want to delete this generation? This action cannot be undone.')) {
+      return
+    }
+
+    try {
+      const res = await fetch(`/api/admin/generations/${id}`, {
+        method: 'DELETE',
+      })
+
+      if (res.ok) {
+        setGenerations((prev) => prev.filter((g) => g.id !== id))
+      } else {
+        const data = await res.json()
+        alert(data.error || 'Failed to delete generation')
+      }
+    } catch (error) {
+      console.error('Failed to delete generation:', error)
+      alert('Failed to delete generation')
     }
   }
 
@@ -226,17 +248,26 @@ export default function GenerationsListPage() {
                   {new Date(gen.createdAt).toLocaleDateString()}
                 </TableCell>
                 <TableCell>
-                  {gen.results[0]?.url && (
-                    <Button variant="ghost" size="icon" asChild>
-                      <a
-                        href={gen.results[0].url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <ExternalLink className="h-4 w-4" />
-                      </a>
+                  <div className="flex gap-2">
+                    {gen.results[0]?.url && (
+                      <Button variant="ghost" size="icon" asChild>
+                        <a
+                          href={gen.results[0].url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <ExternalLink className="h-4 w-4" />
+                        </a>
+                      </Button>
+                    )}
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      onClick={() => deleteGeneration(gen.id)}
+                    >
+                      <Trash2 className="h-4 w-4 text-destructive" />
                     </Button>
-                  )}
+                  </div>
                 </TableCell>
               </TableRow>
             ))}
