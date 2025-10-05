@@ -68,7 +68,6 @@ Return a JSON object with the following structure:
   "slug": "a-url-friendly-slug",
   "badge": "Add a relevant emoji followed by text (e.g., '🎭 Film Noir', '✨ Featured', '🔥 Trending', '💎 Premium', '🎨 Creative')",
   "badgeColor": "Tailwind CSS classes separated by spaces for background, text, and border (e.g., 'bg-gray-100 text-gray-800 border-gray-200', 'bg-blue-100 text-blue-800 border-blue-200', 'bg-purple-100 text-purple-800 border-purple-200')",
-  "credits": A number between 5-50 based on complexity (simple=5-10, medium=15-25, complex=30-50),
   "category": "One of: Portrait, Style, Effect, Background, Enhancement",
   "provider": "NANO_BANANA",
   "prompt": "The transformed prompt template with {{variable}} placeholders",

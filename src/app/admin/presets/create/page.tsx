@@ -132,6 +132,20 @@ export default function CreatePresetPage() {
 
       console.log('Step 1 - Metadata & Variables:', metadataData)
 
+      // Clean variable names from AI response
+      if (metadataData.inputFields && Array.isArray(metadataData.inputFields)) {
+        metadataData.inputFields = metadataData.inputFields.map((field: InputField) => ({
+          ...field,
+          name: field.name
+            ? field.name
+                .trim()
+                .replace(/\s+/g, '_') // Replace spaces with underscores
+                .replace(/[^a-zA-Z0-9_]/g, '') // Remove special characters
+                .toLowerCase()
+            : ''
+        }))
+      }
+
       // STEP 2: Generate final prompt using ONLY the extracted variables
       const variableNames = metadataData.inputFields?.map((f: InputField) => f.name).filter(Boolean) || []
 
@@ -161,7 +175,7 @@ export default function CreatePresetPage() {
         description: metadataData.description || '',
         category: metadataData.category || '',
         provider: metadataData.provider || 'NANO_BANANA',
-        credits: String(metadataData.credits || 1),
+        credits: '5',
         isActive: true,
         badge: metadataData.badge || '',
         badgeColor: metadataData.badgeColor || '',
@@ -175,10 +189,6 @@ export default function CreatePresetPage() {
       } else {
         console.warn('No inputFields returned from AI:', metadataData)
       }
-
-      // Clear the LLM prompt input after successful analysis
-      setLlmPrompt('')
-      setExpectedVariables('')
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to analyze prompt')
     } finally {
