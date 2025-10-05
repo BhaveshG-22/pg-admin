@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { Sparkles } from 'lucide-react'
+import { Sparkles, Plus, Trash2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -32,12 +32,22 @@ const PROVIDERS = [
 
 const CATEGORIES = ['Portrait', 'Style', 'Effect', 'Background', 'Enhancement']
 
+interface InputField {
+  name: string
+  label: string
+  type: 'text' | 'number'
+  placeholder: string
+  defaultValue?: string
+  required: boolean
+}
+
 export default function CreatePresetPage() {
   const router = useRouter()
   const [loading, setLoading] = useState(false)
   const [analyzing, setAnalyzing] = useState(false)
   const [error, setError] = useState('')
   const [llmPrompt, setLlmPrompt] = useState('')
+  const [inputFields, setInputFields] = useState<InputField[]>([])
   const [formData, setFormData] = useState({
     title: '',
     slug: '',
@@ -61,7 +71,10 @@ export default function CreatePresetPage() {
       const res = await fetch('/api/admin/presets', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          inputFields: inputFields.length > 0 ? inputFields : null,
+        }),
       })
 
       const data = await res.json()
@@ -123,6 +136,11 @@ export default function CreatePresetPage() {
         prompt: data.prompt || llmPrompt,
       })
 
+      // Set input fields if available
+      if (data.inputFields && Array.isArray(data.inputFields)) {
+        setInputFields(data.inputFields)
+      }
+
       // Clear the LLM prompt input after successful analysis
       setLlmPrompt('')
     } catch (err) {
@@ -132,11 +150,52 @@ export default function CreatePresetPage() {
     }
   }
 
+  const addInputField = () => {
+    setInputFields([
+      ...inputFields,
+      {
+        name: '',
+        label: '',
+        type: 'text',
+        placeholder: '',
+        required: false,
+      },
+    ])
+  }
+
+  const removeInputField = (index: number) => {
+    setInputFields(inputFields.filter((_, i) => i !== index))
+  }
+
+  const updateInputField = (index: number, field: Partial<InputField>) => {
+    const updated = [...inputFields]
+    updated[index] = { ...updated[index], ...field }
+    setInputFields(updated)
+  }
+
+  const insertVariableIntoPrompt = (variableName: string) => {
+    const variable = `{{${variableName}}}`
+    const textarea = document.getElementById('prompt') as HTMLTextAreaElement
+    if (textarea) {
+      const start = textarea.selectionStart
+      const end = textarea.selectionEnd
+      const text = formData.prompt
+      const newText = text.substring(0, start) + variable + text.substring(end)
+      setFormData({ ...formData, prompt: newText })
+
+      // Set cursor position after the inserted variable
+      setTimeout(() => {
+        textarea.focus()
+        textarea.setSelectionRange(start + variable.length, start + variable.length)
+      }, 0)
+    }
+  }
+
   return (
-    <div className="container mx-auto py-10 max-w-4xl">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold">Create Preset</h1>
-        <p className="text-muted-foreground mt-2">
+    <div className="container mx-auto py-6 px-4 sm:py-10 max-w-4xl">
+      <div className="mb-6 sm:mb-8">
+        <h1 className="text-2xl sm:text-3xl font-bold">Create Preset</h1>
+        <p className="text-muted-foreground mt-2 text-sm sm:text-base">
           Add a new preset to the system
         </p>
       </div>
@@ -229,7 +288,7 @@ export default function CreatePresetPage() {
               />
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <Label htmlFor="category">Category</Label>
                 <Select
@@ -273,7 +332,7 @@ export default function CreatePresetPage() {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <Label htmlFor="credits">Credits *</Label>
                 <Input
@@ -307,7 +366,7 @@ export default function CreatePresetPage() {
             <CardTitle>Display</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <Label htmlFor="badge">Badge</Label>
                 <Input
@@ -344,6 +403,138 @@ export default function CreatePresetPage() {
 
         <Card className="mb-6">
           <CardHeader>
+            <CardTitle className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <span>Input Variables</span>
+              <Button type="button" onClick={addInputField} size="sm" className="w-full sm:w-auto">
+                <Plus className="mr-2 h-4 w-4" />
+                Add Variable
+              </Button>
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            {inputFields.length === 0 ? (
+              <p className="text-sm text-muted-foreground text-center py-8">
+                No input variables defined. Click &quot;Add Variable&quot; to create dynamic inputs for users.
+              </p>
+            ) : (
+              <div className="space-y-6">
+                {inputFields.map((field, index) => (
+                  <div key={index} className="border rounded-lg p-4 space-y-4">
+                    <div className="flex items-center justify-between">
+                      <h4 className="font-medium">Variable {index + 1}</h4>
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => removeInputField(index)}
+                      >
+                        <Trash2 className="h-4 w-4 text-destructive" />
+                      </Button>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div>
+                        <Label>Variable Name *</Label>
+                        <Input
+                          value={field.name}
+                          onChange={(e) =>
+                            updateInputField(index, { name: e.target.value })
+                          }
+                          placeholder="e.g., subject, style, mood"
+                        />
+                        <p className="text-xs text-muted-foreground mt-1">
+                          Use in prompt as: {`{{${field.name || 'variableName'}}}`}
+                        </p>
+                      </div>
+
+                      <div>
+                        <Label>Display Label *</Label>
+                        <Input
+                          value={field.label}
+                          onChange={(e) =>
+                            updateInputField(index, { label: e.target.value })
+                          }
+                          placeholder="e.g., Subject Description"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div>
+                        <Label>Input Type</Label>
+                        <Select
+                          value={field.type}
+                          onValueChange={(value: InputField['type']) =>
+                            updateInputField(index, { type: value })
+                          }
+                        >
+                          <SelectTrigger>
+                            <SelectValue />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="text">Text</SelectItem>
+                            <SelectItem value="number">Number</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+
+                      <div>
+                        <Label>Placeholder</Label>
+                        <Input
+                          value={field.placeholder}
+                          onChange={(e) =>
+                            updateInputField(index, { placeholder: e.target.value })
+                          }
+                          placeholder="Enter placeholder text..."
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <Label>Default Value</Label>
+                      <Input
+                        value={field.defaultValue || ''}
+                        onChange={(e) =>
+                          updateInputField(index, { defaultValue: e.target.value })
+                        }
+                        placeholder="Default value from original prompt..."
+                      />
+                      <p className="text-xs text-muted-foreground mt-1">
+                        Pre-filled value that users can edit if needed
+                      </p>
+                    </div>
+
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                      <div className="flex items-center space-x-2">
+                        <Switch
+                          checked={field.required}
+                          onCheckedChange={(checked) =>
+                            updateInputField(index, { required: checked })
+                          }
+                        />
+                        <Label>Required field</Label>
+                      </div>
+
+                      <Button
+                        type="button"
+                        variant="outline"
+                        size="sm"
+                        onClick={() => insertVariableIntoPrompt(field.name)}
+                        disabled={!field.name}
+                        className="w-full sm:w-auto"
+                      >
+                        Insert into Prompt
+                      </Button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </CardContent>
+        </Card>
+
+        <Card className="mb-6">
+          <CardHeader>
             <CardTitle>Prompt Configuration</CardTitle>
           </CardHeader>
           <CardContent>
@@ -356,22 +547,23 @@ export default function CreatePresetPage() {
                 setFormData({ ...formData, prompt: e.target.value })
               }
               rows={8}
-              placeholder="Enter the prompt template..."
+              placeholder="Enter the prompt template. Use {{variableName}} to insert variables..."
             />
             <p className="text-sm text-muted-foreground mt-2">
-              Supports variables and JSON format
+              Use double curly braces to insert variables: {`{{variableName}}`}
             </p>
           </CardContent>
         </Card>
 
-        <div className="flex gap-4">
-          <Button type="submit" disabled={loading}>
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+          <Button type="submit" disabled={loading} className="w-full sm:w-auto">
             {loading ? 'Creating...' : 'Create Preset'}
           </Button>
           <Button
             type="button"
             variant="outline"
             onClick={() => router.back()}
+            className="w-full sm:w-auto"
           >
             Cancel
           </Button>

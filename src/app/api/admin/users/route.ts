@@ -45,10 +45,26 @@ export async function GET(request: NextRequest) {
             images: true,
           },
         },
+        generations: {
+          select: {
+            creditsUsed: true,
+          },
+        },
       },
     })
 
-    return NextResponse.json(users)
+    // Calculate actual total credits used from generations
+    const usersWithCalculatedCredits = users.map(user => {
+      const actualTotalUsed = user.generations.reduce((sum, gen) => sum + (gen.creditsUsed || 0), 0)
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { generations, ...userWithoutGenerations } = user
+      return {
+        ...userWithoutGenerations,
+        totalCreditsUsed: actualTotalUsed,
+      }
+    })
+
+    return NextResponse.json(usersWithCalculatedCredits)
   } catch (error) {
     console.error('Error fetching users:', error)
     return NextResponse.json(
