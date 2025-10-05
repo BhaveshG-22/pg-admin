@@ -16,6 +16,7 @@ import {
 } from '@/components/ui/select'
 import { Switch } from '@/components/ui/switch'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
 import { ThumbnailUpload } from '@/components/ThumbnailUpload'
 
 const PROVIDERS = [
@@ -47,6 +48,8 @@ export default function CreatePresetPage() {
   const [analyzing, setAnalyzing] = useState(false)
   const [error, setError] = useState('')
   const [llmPrompt, setLlmPrompt] = useState('')
+  const [expectedVariables, setExpectedVariables] = useState('')
+  const [genderPreference, setGenderPreference] = useState<'neutral' | 'male' | 'female'>('neutral')
   const [inputFields, setInputFields] = useState<InputField[]>([])
   const [formData, setFormData] = useState({
     title: '',
@@ -109,40 +112,73 @@ export default function CreatePresetPage() {
     setError('')
 
     try {
-      const res = await fetch('/api/admin/presets/analyze', {
+      // STEP 1: Get metadata and input fields
+      const res1 = await fetch('/api/admin/presets/analyze', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ prompt: llmPrompt }),
+        body: JSON.stringify({
+          prompt: llmPrompt,
+          expectedVariables: expectedVariables.trim() || undefined,
+          genderPreference: genderPreference,
+          step: 'metadata'
+        }),
       })
 
-      const data = await res.json()
+      const metadataData = await res1.json()
 
-      if (!res.ok) {
-        throw new Error(data.error || 'Failed to analyze prompt')
+      if (!res1.ok) {
+        throw new Error(metadataData.error || 'Failed to analyze prompt')
       }
+
+      console.log('Step 1 - Metadata & Variables:', metadataData)
+
+      // STEP 2: Generate final prompt using ONLY the extracted variables
+      const variableNames = metadataData.inputFields?.map((f: InputField) => f.name).filter(Boolean) || []
+
+      const res2 = await fetch('/api/admin/presets/analyze', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          prompt: llmPrompt,
+          allowedVariables: variableNames,
+          genderPreference: genderPreference,
+          step: 'prompt'
+        }),
+      })
+
+      const promptData = await res2.json()
+
+      if (!res2.ok) {
+        throw new Error(promptData.error || 'Failed to generate prompt template')
+      }
+
+      console.log('Step 2 - Final Prompt:', promptData)
 
       // Fill form with analyzed data
       setFormData({
-        title: data.title || '',
-        slug: data.slug || '',
-        description: data.description || '',
-        category: data.category || '',
-        provider: data.provider || 'NANO_BANANA',
-        credits: String(data.credits || 1),
+        title: metadataData.title || '',
+        slug: metadataData.slug || '',
+        description: metadataData.description || '',
+        category: metadataData.category || '',
+        provider: metadataData.provider || 'NANO_BANANA',
+        credits: String(metadataData.credits || 1),
         isActive: true,
-        badge: data.badge || '',
-        badgeColor: data.badgeColor || '',
+        badge: metadataData.badge || '',
+        badgeColor: metadataData.badgeColor || '',
         thumbnailUrl: formData.thumbnailUrl, // Keep existing thumbnail
-        prompt: data.prompt || llmPrompt,
+        prompt: promptData.prompt || llmPrompt,
       })
 
       // Set input fields if available
-      if (data.inputFields && Array.isArray(data.inputFields)) {
-        setInputFields(data.inputFields)
+      if (metadataData.inputFields && Array.isArray(metadataData.inputFields)) {
+        setInputFields(metadataData.inputFields)
+      } else {
+        console.warn('No inputFields returned from AI:', metadataData)
       }
 
       // Clear the LLM prompt input after successful analysis
       setLlmPrompt('')
+      setExpectedVariables('')
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to analyze prompt')
     } finally {
@@ -164,13 +200,44 @@ export default function CreatePresetPage() {
   }
 
   const removeInputField = (index: number) => {
+    const fieldToRemove = inputFields[index]
     setInputFields(inputFields.filter((_, i) => i !== index))
+
+    // Remove the variable from the prompt template
+    if (fieldToRemove.name) {
+      const variableToRemove = `{{${fieldToRemove.name}}}`
+      setFormData(prev => ({
+        ...prev,
+        prompt: prev.prompt.replaceAll(variableToRemove, '')
+      }))
+    }
   }
 
   const updateInputField = (index: number, field: Partial<InputField>) => {
     const updated = [...inputFields]
+    const oldName = updated[index].name
+
+    // Clean variable name: remove spaces and special characters
+    if (field.name !== undefined) {
+      field.name = field.name
+        .trim()
+        .replace(/\s+/g, '_') // Replace spaces with underscores
+        .replace(/[^a-zA-Z0-9_]/g, '') // Remove special characters except underscore
+        .toLowerCase()
+    }
+
     updated[index] = { ...updated[index], ...field }
     setInputFields(updated)
+
+    // If variable name changed, update it in the prompt template
+    if (field.name !== undefined && oldName && field.name !== oldName) {
+      const oldVariable = `{{${oldName}}}`
+      const newVariable = field.name ? `{{${field.name}}}` : ''
+      setFormData(prev => ({
+        ...prev,
+        prompt: prev.prompt.replaceAll(oldVariable, newVariable)
+      }))
+    }
   }
 
   const insertVariableIntoPrompt = (variableName: string) => {
@@ -225,6 +292,62 @@ export default function CreatePresetPage() {
             />
             <p className="text-sm text-muted-foreground mt-2">
               AI will analyze your prompt and automatically fill the form fields below
+            </p>
+          </div>
+
+          <div>
+            <Label htmlFor="expectedVariables">Expected Variables (Optional)</Label>
+            <Textarea
+              id="expectedVariables"
+              value={expectedVariables}
+              onChange={(e) => setExpectedVariables(e.target.value)}
+              rows={3}
+              placeholder="Specify which variables to extract, one per line:&#10;subject&#10;location&#10;style&#10;mood"
+            />
+            <p className="text-sm text-muted-foreground mt-2">
+              List the variable names you want to extract (one per line). If left empty, AI will auto-detect variables.
+            </p>
+          </div>
+
+          <div>
+            <Label>Gender Preference</Label>
+            <div className="flex gap-4 mt-2">
+              <label className="flex items-center gap-2 cursor-pointer">
+                <input
+                  type="radio"
+                  name="genderPreference"
+                  value="neutral"
+                  checked={genderPreference === 'neutral'}
+                  onChange={(e) => setGenderPreference(e.target.value as 'neutral' | 'male' | 'female')}
+                  className="w-4 h-4"
+                />
+                <span className="text-sm">Gender Neutral</span>
+              </label>
+              <label className="flex items-center gap-2 cursor-pointer">
+                <input
+                  type="radio"
+                  name="genderPreference"
+                  value="male"
+                  checked={genderPreference === 'male'}
+                  onChange={(e) => setGenderPreference(e.target.value as 'neutral' | 'male' | 'female')}
+                  className="w-4 h-4"
+                />
+                <span className="text-sm">Male Specific</span>
+              </label>
+              <label className="flex items-center gap-2 cursor-pointer">
+                <input
+                  type="radio"
+                  name="genderPreference"
+                  value="female"
+                  checked={genderPreference === 'female'}
+                  onChange={(e) => setGenderPreference(e.target.value as 'neutral' | 'male' | 'female')}
+                  className="w-4 h-4"
+                />
+                <span className="text-sm">Female Specific</span>
+              </label>
+            </div>
+            <p className="text-sm text-muted-foreground mt-2">
+              Choose how the AI should handle gender in the generated prompt
             </p>
           </div>
           <Button
@@ -417,20 +540,25 @@ export default function CreatePresetPage() {
                 No input variables defined. Click &quot;Add Variable&quot; to create dynamic inputs for users.
               </p>
             ) : (
-              <div className="space-y-6">
+              <Accordion type="single" collapsible className="space-y-2">
                 {inputFields.map((field, index) => (
-                  <div key={index} className="border rounded-lg p-4 space-y-4">
-                    <div className="flex items-center justify-between">
-                      <h4 className="font-medium">Variable {index + 1}</h4>
-                      <Button
+                  <AccordionItem key={index} value={`item-${index}`} className="border rounded-lg relative">
+                    <div className="flex items-center">
+                      <AccordionTrigger className="px-4 hover:no-underline flex-1">
+                        <span className="font-medium">
+                          {field.name || `Variable ${index + 1}`}
+                          {field.name && <span className="text-muted-foreground ml-2 text-sm">{`{{${field.name}}}`}</span>}
+                        </span>
+                      </AccordionTrigger>
+                      <button
                         type="button"
-                        variant="ghost"
-                        size="sm"
+                        className="px-3 py-2 hover:bg-muted rounded-md mr-2"
                         onClick={() => removeInputField(index)}
                       >
                         <Trash2 className="h-4 w-4 text-destructive" />
-                      </Button>
+                      </button>
                     </div>
+                    <AccordionContent className="px-4 space-y-4">
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
@@ -526,9 +654,10 @@ export default function CreatePresetPage() {
                         Insert into Prompt
                       </Button>
                     </div>
-                  </div>
+                    </AccordionContent>
+                  </AccordionItem>
                 ))}
-              </div>
+              </Accordion>
             )}
           </CardContent>
         </Card>

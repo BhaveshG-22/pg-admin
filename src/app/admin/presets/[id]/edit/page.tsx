@@ -16,6 +16,7 @@ import {
 } from '@/components/ui/select'
 import { Switch } from '@/components/ui/switch'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
 import { Download, Play, Plus, Trash2 } from 'lucide-react'
 import { ThumbnailUpload } from '@/components/ThumbnailUpload'
 
@@ -97,14 +98,18 @@ export default function EditPresetPage({
     setSaving(true)
     setError('')
 
+    const payload = {
+      ...preset,
+      inputFields: inputFields.length > 0 ? inputFields : null,
+    }
+
+    console.log('Saving preset with inputFields:', payload.inputFields)
+
     try {
       const res = await fetch(`/api/admin/presets/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          ...preset,
-          inputFields: inputFields.length > 0 ? inputFields : null,
-        }),
+        body: JSON.stringify(payload),
       })
 
       const data = await res.json()
@@ -182,13 +187,44 @@ export default function EditPresetPage({
   }
 
   const removeInputField = (index: number) => {
+    const fieldToRemove = inputFields[index]
     setInputFields(inputFields.filter((_, i) => i !== index))
+
+    // Remove the variable from the prompt template
+    if (fieldToRemove.name && preset) {
+      const variableToRemove = `{{${fieldToRemove.name}}}`
+      setPreset({
+        ...preset,
+        prompt: preset.prompt.replaceAll(variableToRemove, '')
+      })
+    }
   }
 
   const updateInputField = (index: number, field: Partial<InputField>) => {
     const updated = [...inputFields]
+    const oldName = updated[index].name
+
+    // Clean variable name: remove spaces and special characters
+    if (field.name !== undefined) {
+      field.name = field.name
+        .trim()
+        .replace(/\s+/g, '_') // Replace spaces with underscores
+        .replace(/[^a-zA-Z0-9_]/g, '') // Remove special characters except underscore
+        .toLowerCase()
+    }
+
     updated[index] = { ...updated[index], ...field }
     setInputFields(updated)
+
+    // If variable name changed, update it in the prompt template
+    if (field.name !== undefined && oldName && field.name !== oldName && preset) {
+      const oldVariable = `{{${oldName}}}`
+      const newVariable = field.name ? `{{${field.name}}}` : ''
+      setPreset({
+        ...preset,
+        prompt: preset.prompt.replaceAll(oldVariable, newVariable)
+      })
+    }
   }
 
   const insertVariableIntoPrompt = (variableName: string) => {
@@ -416,20 +452,25 @@ export default function EditPresetPage({
                 No input variables defined. Click &quot;Add Variable&quot; to create dynamic inputs for users.
               </p>
             ) : (
-              <div className="space-y-6">
+              <Accordion type="single" collapsible className="space-y-2">
                 {inputFields.map((field, index) => (
-                  <div key={index} className="border rounded-lg p-4 space-y-4">
-                    <div className="flex items-center justify-between">
-                      <h4 className="font-medium">Variable {index + 1}</h4>
-                      <Button
+                  <AccordionItem key={index} value={`item-${index}`} className="border rounded-lg relative">
+                    <div className="flex items-center">
+                      <AccordionTrigger className="px-4 hover:no-underline flex-1">
+                        <span className="font-medium">
+                          {field.name || `Variable ${index + 1}`}
+                          {field.name && <span className="text-muted-foreground ml-2 text-sm">{`{{${field.name}}}`}</span>}
+                        </span>
+                      </AccordionTrigger>
+                      <button
                         type="button"
-                        variant="ghost"
-                        size="sm"
+                        className="px-3 py-2 hover:bg-muted rounded-md mr-2"
                         onClick={() => removeInputField(index)}
                       >
                         <Trash2 className="h-4 w-4 text-destructive" />
-                      </Button>
+                      </button>
                     </div>
+                    <AccordionContent className="px-4 space-y-4">
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
@@ -525,9 +566,10 @@ export default function EditPresetPage({
                         Insert into Prompt
                       </Button>
                     </div>
-                  </div>
+                    </AccordionContent>
+                  </AccordionItem>
                 ))}
-              </div>
+              </Accordion>
             )}
           </CardContent>
         </Card>

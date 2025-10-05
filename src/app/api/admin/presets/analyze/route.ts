@@ -7,7 +7,7 @@ const openai = new OpenAI({
 
 export async function POST(request: NextRequest) {
   try {
-    const { prompt } = await request.json()
+    const { prompt, expectedVariables, allowedVariables, genderPreference = 'neutral', step = 'metadata' } = await request.json()
 
     if (!prompt || typeof prompt !== 'string') {
       return NextResponse.json(
@@ -23,12 +23,36 @@ export async function POST(request: NextRequest) {
       )
     }
 
+    // STEP 2: Generate prompt template with ONLY allowed variables
+    if (step === 'prompt' && allowedVariables && Array.isArray(allowedVariables)) {
+      return await generatePromptTemplate(prompt, allowedVariables, genderPreference)
+    }
+
+    // STEP 1: Generate metadata and input fields (default)
+    // Parse expected variables if provided
+    const variablesList = expectedVariables
+      ? expectedVariables.split('\n').map((v: string) => v.trim()).filter((v: string) => v.length > 0)
+      : null
+
+    const variablesInstruction = variablesList
+      ? `\n\n⚠️ CRITICAL CONSTRAINT - THE USER HAS SPECIFIED EXACT VARIABLES ⚠️\n\nAllowed variables ONLY:\n${variablesList.map((v: string) => `- {{${v}}}`).join('\n')}\n\nSTRICT RULES:\n1. Create input fields for EXACTLY these ${variablesList.length} variable(s) - NO MORE, NO LESS\n2. In the prompt template, you may ONLY use these variable names: ${variablesList.join(', ')}\n3. Any text that is NOT one of these variables MUST be kept as static text in the prompt\n4. Do NOT create variables for: subject, pose, props, location, background, clothing, or ANY other concept unless it is in the allowed list above\n5. If the original prompt mentions something not in the allowed variables, write it as plain text in the output prompt\n\nExample: If allowed variables are "color" and "number", then:\n- CORRECT: "A person wearing {{color}} clothes holding {{number}} balloons"\n- WRONG: "{{subject}} wearing {{color}} {{clothing}} holding {{number}} {{props}}" (subject, clothing, props are not allowed!)`
+      : ''
+
+    // Gender preference instructions
+    const genderInstructions: Record<string, string> = {
+      neutral: 'Make the prompt GENDER NEUTRAL. Replace gender-specific terms (e.g., "man", "woman", "boy", "girl", "he", "she") with neutral alternatives (e.g., "person", "individual", "they"). Default values should also be gender neutral.',
+      male: 'Keep the prompt MALE SPECIFIC. Use male pronouns and terms (e.g., "man", "boy", "he", "his"). Default values should reflect male-specific examples.',
+      female: 'Make the prompt FEMALE SPECIFIC. Use female pronouns and terms (e.g., "woman", "girl", "she", "her"). Default values should reflect female-specific examples.'
+    }
+
+    const genderInstruction = `\n\nGENDER PREFERENCE: ${genderInstructions[genderPreference as keyof typeof genderInstructions] || genderInstructions.neutral}`
+
     const completion = await openai.chat.completions.create({
       model: 'gpt-4o-mini',
       messages: [
         {
           role: 'system',
-          content: `You are an AI assistant that analyzes image generation prompts and converts them into structured presets with dynamic input variables.
+          content: `You are an AI assistant that analyzes image generation prompts and converts them into structured presets with dynamic input variables.${variablesInstruction}${genderInstruction}
 
 Your task is to:
 1. Analyze the prompt and identify parts that should be user-customizable
@@ -42,8 +66,8 @@ Return a JSON object with the following structure:
   "title": "A short, catchy title (3-6 words)",
   "description": "A brief description of what this preset does (1-2 sentences)",
   "slug": "a-url-friendly-slug",
-  "badge": "A single word badge like 'Popular', 'New', 'Pro', 'Premium', 'Trending'",
-  "badgeColor": "A color name like 'blue', 'purple', 'green', 'pink', 'yellow', 'red', 'orange'",
+  "badge": "Add a relevant emoji followed by text (e.g., '🎭 Film Noir', '✨ Featured', '🔥 Trending', '💎 Premium', '🎨 Creative')",
+  "badgeColor": "Tailwind CSS classes separated by spaces for background, text, and border (e.g., 'bg-gray-100 text-gray-800 border-gray-200', 'bg-blue-100 text-blue-800 border-blue-200', 'bg-purple-100 text-purple-800 border-purple-200')",
   "credits": A number between 5-50 based on complexity (simple=5-10, medium=15-25, complex=30-50),
   "category": "One of: Portrait, Style, Effect, Background, Enhancement",
   "provider": "NANO_BANANA",
@@ -90,14 +114,20 @@ Guidelines for creating input fields:
    - Keep the prompt structure and flow natural
    - Example: "A young man sitting casually" → "{{subject}} {{pose}}"
    - Example: "modern studio with silver balloons" → "{{location}} with {{props}}"
+   - CRITICAL: Each unique variable must have a UNIQUE name. If the same concept appears multiple times, use the SAME variable name
+   - Example: "silver balloons... and star-shaped balloons" → use ONE variable {{balloons}} for both, with defaultValue combining both descriptions
+   - DO NOT create multiple variables for the same type of thing (e.g., shape_of_balloon, shape_of_balloon_number)
 
 5. BEST PRACTICES:
-   - Create 2-6 input fields (don't overdo it)
+   - If user provides specific variables, create input fields for ONLY those variables
+   - If no variables specified, create 2-6 input fields (don't overdo it)
    - Make the main subject field required
    - Use clear, user-friendly labels
    - Provide helpful placeholder examples
    - Keep variable names short and lowercase with underscores (e.g., subject, photo_style, lighting_type)
    - Only use "number" type for actual numeric values (age, quantity, etc.)
+   - AVOID creating overly specific variable names - use general terms (e.g., "balloons" not "shape_of_balloon")
+   - If something appears multiple times with slight variations, consolidate into ONE variable with a comprehensive defaultValue
 
 6. DEFAULT VALUES:
    - ALWAYS include "defaultValue" for EVERY input field
@@ -113,7 +143,7 @@ Output prompt: "A {{event_type}} photoshoot in {{location}}. {{subject}} {{pose}
 Output inputFields: [
   { name: "event_type", label: "Event Type", type: "text", placeholder: "e.g., birthday celebration, anniversary", defaultValue: "birthday celebration", required: true },
   { name: "location", label: "Location/Setting", type: "text", placeholder: "e.g., modern studio, outdoor garden", defaultValue: "a stylish modern studio setup", required: true },
-  { name: "subject", label: "Subject Description", type: "textarea", placeholder: "Describe the person (age, gender, features)", defaultValue: "A young man", required: true },
+  { name: "subject", label: "Subject Description", type: "text", placeholder: "Describe the person (age, gender, features)", defaultValue: "A young man", required: true },
   { name: "pose", label: "Pose/Action", type: "text", placeholder: "e.g., sitting casually, standing confidently", defaultValue: "sitting casually on the floor", required: false },
   { name: "background", label: "Background Details", type: "text", placeholder: "e.g., decorated wall, brick wall", defaultValue: "a decorated wall", required: false },
   { name: "props", label: "Props/Items", type: "text", placeholder: "e.g., silver balloons, flowers", defaultValue: "silver balloons", required: false },
@@ -139,6 +169,78 @@ Return ONLY valid JSON, no markdown or explanation.`,
     return NextResponse.json(
       {
         error: 'Failed to analyze prompt',
+        details: error instanceof Error ? error.message : String(error),
+      },
+      { status: 500 }
+    )
+  }
+}
+
+// STEP 2: Generate prompt template using ONLY allowed variables
+async function generatePromptTemplate(
+  originalPrompt: string,
+  allowedVariables: string[],
+  genderPreference: string
+) {
+  try {
+    // Gender preference instructions
+    const genderInstructions: Record<string, string> = {
+      neutral: 'Make the prompt GENDER NEUTRAL. Replace gender-specific terms (e.g., "man", "woman", "boy", "girl", "he", "she") with neutral alternatives (e.g., "person", "individual", "they").',
+      male: 'Keep the prompt MALE SPECIFIC. Use male pronouns and terms (e.g., "man", "boy", "he", "his").',
+      female: 'Make the prompt FEMALE SPECIFIC. Use female pronouns and terms (e.g., "woman", "girl", "she", "her").'
+    }
+
+    const genderInstruction = genderInstructions[genderPreference as keyof typeof genderInstructions] || genderInstructions.neutral
+
+    const completion = await openai.chat.completions.create({
+      model: 'gpt-4o-mini',
+      messages: [
+        {
+          role: 'system',
+          content: `You are creating a prompt template from an original prompt.
+
+⚠️ CRITICAL RULES ⚠️
+
+You have been given these EXACT variable names to use:
+${allowedVariables.map((v) => `- {{${v}}}`).join('\n')}
+
+Your task:
+1. Transform the original prompt into a template
+2. You may ONLY use these ${allowedVariables.length} variable(s): ${allowedVariables.join(', ')}
+3. Replace the relevant parts of the prompt with ONLY these variables
+4. Keep EVERYTHING ELSE as static text
+5. DO NOT create or use ANY other variables like {{subject}}, {{pose}}, {{props}}, {{location}}, etc.
+
+Gender preference: ${genderInstruction}
+
+Return ONLY a JSON object with this structure:
+{
+  "prompt": "The prompt template using ONLY the allowed variables"
+}
+
+Example:
+If allowed variables are: ["color", "number"]
+Original: "A young man wearing a blue shirt holding 5 red balloons"
+Output: {"prompt": "A young person wearing a {{color}} shirt holding {{number}} red balloons"}
+
+Notice: "young man" was changed to "young person" (static text), only "blue" became {{color}} and we could add {{number}} for "5"`,
+        },
+        {
+          role: 'user',
+          content: originalPrompt,
+        },
+      ],
+      temperature: 0.3,
+      response_format: { type: 'json_object' },
+    })
+
+    const result = JSON.parse(completion.choices[0].message.content || '{}')
+    return NextResponse.json(result)
+  } catch (error) {
+    console.error('Error generating prompt template:', error)
+    return NextResponse.json(
+      {
+        error: 'Failed to generate prompt template',
         details: error instanceof Error ? error.message : String(error),
       },
       { status: 500 }

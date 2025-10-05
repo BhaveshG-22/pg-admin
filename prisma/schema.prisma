@@ -88,7 +88,7 @@ model Generation {
   completedAt      DateTime?
   updatedAt        DateTime           @updatedAt
   results          GenerationResult[]
-  preset           Preset             @relation(fields: [presetId], references: [id])
+  preset           Preset             @relation(fields: [presetId], references: [id], onDelete: Cascade)
   user             User               @relation(fields: [userId], references: [id], onDelete: Cascade)
   originalImage    UserImage?         @relation(fields: [userImageId], references: [id])
 

@@ -36,6 +36,8 @@ export async function PUT(
     const { id } = await params
     const body = await request.json()
 
+    console.log('Updating preset with inputFields:', body.inputFields)
+
     const preset = await prisma.preset.update({
       where: { id },
       data: {
@@ -50,6 +52,7 @@ export async function PUT(
         badgeColor: body.badgeColor || '',
         thumbnailUrl: body.thumbnailUrl,
         prompt: body.prompt,
+        inputFields: body.inputFields || null,
       },
     })
 
@@ -84,6 +87,8 @@ export async function DELETE(
 ) {
   try {
     const { id } = await params
+
+    // Cascade delete is enabled in schema - will automatically delete associated generations
     await prisma.preset.delete({
       where: { id },
     })

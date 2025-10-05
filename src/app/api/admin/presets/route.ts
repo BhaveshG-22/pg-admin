@@ -73,6 +73,7 @@ export async function POST(request: NextRequest) {
         badgeColor: body.badgeColor || '',
         thumbnailUrl: body.thumbnailUrl,
         prompt: body.prompt,
+        inputFields: body.inputFields || null,
       },
     })
 
