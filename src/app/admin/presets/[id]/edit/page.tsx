@@ -19,6 +19,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
 import { Download, Play, Plus, Trash2 } from 'lucide-react'
 import { ThumbnailUpload } from '@/components/ThumbnailUpload'
+import { ExamplesManager } from '@/components/ExamplesManager'
 
 const PROVIDERS = [
   'OPENAI',
@@ -57,6 +58,7 @@ interface Preset {
   thumbnailUrl: string | null
   prompt: string
   inputFields?: InputField[] | null
+  examples?: string[][] | null
 }
 
 export default function EditPresetPage({
@@ -101,6 +103,7 @@ export default function EditPresetPage({
     const payload = {
       ...preset,
       inputFields: inputFields.length > 0 ? inputFields : null,
+      examples: preset?.examples && preset.examples.length > 0 ? preset.examples : null,
     }
 
     console.log('Saving preset with inputFields:', payload.inputFields)
@@ -439,6 +442,20 @@ export default function EditPresetPage({
               value={preset.thumbnailUrl || ''}
               onChange={(url) =>
                 setPreset({ ...preset, thumbnailUrl: url })
+              }
+            />
+          </CardContent>
+        </Card>
+
+        <Card className="mb-6">
+          <CardHeader>
+            <CardTitle>Transformation Examples</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ExamplesManager
+              value={preset.examples || []}
+              onChange={(examples) =>
+                setPreset({ ...preset, examples })
               }
             />
           </CardContent>

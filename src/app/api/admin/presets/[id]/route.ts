@@ -53,6 +53,7 @@ export async function PUT(
         thumbnailUrl: body.thumbnailUrl,
         prompt: body.prompt,
         inputFields: body.inputFields || null,
+        examples: body.examples || null,
       },
     })
 
@@ -82,7 +83,7 @@ export async function PUT(
 }
 
 export async function DELETE(
-  request: NextRequest,
+  _request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
