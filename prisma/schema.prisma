@@ -36,8 +36,10 @@ model Preset {
   credits      Int
   category     String
   provider     Provider     @default(NANO_BANANA)
-  owner        String?
-  examples     Json?
+  owner        String?      // Credit attribution for prompt creator
+  slider_img   Json?
+  gallery      Json?        // Gallery of previously created images using this preset
+
   thumbnailUrl String?
   isActive     Boolean      @default(true)
   createdAt    DateTime     @default(now())

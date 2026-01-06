@@ -53,7 +53,8 @@ export async function PUT(
         thumbnailUrl: body.thumbnailUrl,
         prompt: body.prompt,
         inputFields: body.inputFields || null,
-        examples: body.examples || null,
+        slider_img: body.slider_img || null,
+        gallery: body.gallery || null,
       },
     })
 

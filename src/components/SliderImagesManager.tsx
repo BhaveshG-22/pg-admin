@@ -15,9 +15,10 @@ interface ExamplePair {
   progressAfter?: number
 }
 
-interface ExamplesManagerProps {
+interface SliderImagesManagerProps {
   value: string[][] // Array of [before, after] URL pairs
   onChange: (examples: string[][]) => void
+  showHeader?: boolean // Whether to show the header section
 }
 
 async function requestPresignedUrl(file: File): Promise<{ url: string; key: string; headers: Record<string, string> }> {
@@ -104,7 +105,7 @@ function validateFile(file: File) {
   return { valid: true }
 }
 
-export function ExamplesManager({ value, onChange }: ExamplesManagerProps) {
+export function SliderImagesManager({ value, onChange, showHeader = true }: SliderImagesManagerProps) {
   const [examples, setExamples] = useState<ExamplePair[]>(
     value.map(([before, after]) => ({ before, after }))
   )
@@ -220,18 +221,20 @@ export function ExamplesManager({ value, onChange }: ExamplesManagerProps) {
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center justify-between">
-        <div>
-          <Label className="text-lg">Transformation Examples</Label>
-          <p className="text-sm text-muted-foreground mt-1">
-            Upload before/after image pairs to showcase transformations
-          </p>
+      {showHeader && (
+        <div className="flex items-center justify-between">
+          <div>
+            <Label className="text-lg">Transformation Examples</Label>
+            <p className="text-sm text-muted-foreground mt-1">
+              Upload before/after image pairs to showcase transformations
+            </p>
+          </div>
+          <Button type="button" onClick={addExample} size="sm" variant="outline">
+            <Plus className="mr-2 h-4 w-4" />
+            Add Example
+          </Button>
         </div>
-        <Button type="button" onClick={addExample} size="sm" variant="outline">
-          <Plus className="mr-2 h-4 w-4" />
-          Add Example
-        </Button>
-      </div>
+      )}
 
       {error && (
         <div className="bg-destructive/10 text-destructive px-4 py-3 rounded text-sm">
@@ -250,6 +253,14 @@ export function ExamplesManager({ value, onChange }: ExamplesManagerProps) {
         </Card>
       ) : (
         <div className="space-y-4">
+          {!showHeader && (
+            <div className="flex justify-end">
+              <Button type="button" onClick={addExample} size="sm" variant="outline">
+                <Plus className="mr-2 h-4 w-4" />
+                Add Example
+              </Button>
+            </div>
+          )}
           {examples.map((example, index) => (
             <Card key={index} className="p-4">
               <div className="flex items-start gap-4">

@@ -19,7 +19,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
 import { Download, Play, Plus, Trash2 } from 'lucide-react'
 import { ThumbnailUpload } from '@/components/ThumbnailUpload'
-import { ExamplesManager } from '@/components/ExamplesManager'
+import { SliderImagesManager } from '@/components/SliderImagesManager'
+import { GalleryManager } from '@/components/GalleryManager'
 
 const PROVIDERS = [
   'OPENAI',
@@ -58,7 +59,8 @@ interface Preset {
   thumbnailUrl: string | null
   prompt: string
   inputFields?: InputField[] | null
-  examples?: string[][] | null
+  slider_img?: string[][] | null
+  gallery?: string[] | null
 }
 
 export default function EditPresetPage({
@@ -103,7 +105,8 @@ export default function EditPresetPage({
     const payload = {
       ...preset,
       inputFields: inputFields.length > 0 ? inputFields : null,
-      examples: preset?.examples && preset.examples.length > 0 ? preset.examples : null,
+      slider_img: preset?.slider_img && preset.slider_img.length > 0 ? preset.slider_img : null,
+      gallery: preset?.gallery && preset.gallery.length > 0 ? preset.gallery : null,
     }
 
     console.log('Saving preset with inputFields:', payload.inputFields)
@@ -449,13 +452,28 @@ export default function EditPresetPage({
 
         <Card className="mb-6">
           <CardHeader>
-            <CardTitle>Transformation Examples</CardTitle>
+            <CardTitle>Slider Images (Before/After)</CardTitle>
           </CardHeader>
           <CardContent>
-            <ExamplesManager
-              value={preset.examples || []}
-              onChange={(examples) =>
-                setPreset({ ...preset, examples })
+            <SliderImagesManager
+              value={preset.slider_img || []}
+              onChange={(slider_img) =>
+                setPreset({ ...preset, slider_img })
+              }
+              showHeader={false}
+            />
+          </CardContent>
+        </Card>
+
+        <Card className="mb-6">
+          <CardHeader>
+            <CardTitle>Gallery - Example Generations</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <GalleryManager
+              value={preset.gallery || []}
+              onChange={(gallery) =>
+                setPreset({ ...preset, gallery })
               }
             />
           </CardContent>

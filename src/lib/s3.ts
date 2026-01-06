@@ -46,6 +46,14 @@ export function generateExampleKey(originalFilename?: string): string {
   return `preset-examples/${timestamp}-${uuid}.${extension}`
 }
 
+export function generateGalleryKey(originalFilename?: string): string {
+  const timestamp = Date.now()
+  const uuid = crypto.randomUUID()
+  const extension = originalFilename?.split('.').pop() || 'jpg'
+
+  return `preset-gallery/${timestamp}-${uuid}.${extension}`
+}
+
 export function validateUpload(mimeType: string, fileSize: number) {
   const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp']
 
