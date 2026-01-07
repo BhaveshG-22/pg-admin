@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createPresignedPutUrl, generateGalleryKey, validateUpload } from '@/lib/s3'
+import { createPresignedPutUrl, generateModelImageKey, validateUpload } from '@/lib/s3'
 
 export const runtime = 'nodejs'
 
@@ -25,7 +25,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: validation.error }, { status: 400 })
     }
 
-    const s3Key = generateGalleryKey(filename)
+    const s3Key = generateModelImageKey(filename)
 
     const presignedUrl = await createPresignedPutUrl(s3Key, mimeType, 300)
 

@@ -1,0 +1,381 @@
+{
+  "male": [
+    {
+      "id": "male_01",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 25–30 year old male, light brown skin tone, short black hair, clean-shaven. Neutral facial expression, looking straight at camera. Plain grey studio background. Wearing a simple black t-shirt. No jewelry, no tattoos, no logos. Centered headshot, shoulders visible.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, asymmetry, watermark, text, logo, blur, low resolution"
+    },
+    {
+      "id": "male_02",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 28–35 year old Caucasian male, fair skin, light stubble beard. Medium brown hair, slightly textured. Soft window light from left side. Neutral expression, relaxed posture. Plain beige background. Wearing white t-shirt.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, asymmetry, watermark, text, logo, blur, low resolution"
+    },
+    {
+      "id": "male_03",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 22–28 year old male, dark skin tone, short cropped hair. Clean face, no beard. Soft natural daylight. Neutral face, calm eyes. Plain off-white background. Wearing charcoal grey t-shirt.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, asymmetry, watermark, text, logo, blur, low resolution"
+    },
+    {
+      "id": "male_04",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 30–38 year old male, olive skin tone. Short fade haircut, trimmed beard. High-quality studio lighting. Neutral expression, symmetrical face. Plain dark grey background. Wearing navy blue t-shirt.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, asymmetry, watermark, text, logo, blur, low resolution"
+    },
+    {
+      "id": "male_05",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 20–24 year old male, medium skin tone. Messy short hair, clean face. Natural daylight, minimal shadows. Neutral expression, soft facial features. Plain white background. Wearing light grey t-shirt.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, asymmetry, watermark, text, logo, blur, low resolution"
+    },
+    {
+      "id": "male_06",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 26–32 year old South Asian male. Warm brown skin tone. Short neatly trimmed black hair. Clean-shaven. Neutral facial expression, looking directly at camera. Plain light grey studio background. Wearing simple charcoal t-shirt. No accessories.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, asymmetry, watermark, text, logo, blur, low resolution"
+    },
+    {
+      "id": "male_07",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 24–30 year old East Asian male. Fair to light skin tone. Straight black hair, medium length. Clean face. Neutral expression, relaxed jaw. Plain off-white background. Wearing white t-shirt.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, asymmetry, watermark, text, logo, blur, low resolution"
+    },
+    {
+      "id": "male_08",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 38–45 year old male. Light olive skin tone. Short salt-and-pepper hair. Light stubble. Calm, neutral expression. Plain dark grey background. Wearing navy t-shirt.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, asymmetry, watermark, text, logo, blur, low resolution"
+    },
+    {
+      "id": "male_09",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 23–29 year old male. Medium skin tone. Short textured haircut. Clean face. Strong cheekbones, natural jawline. Neutral expression. Plain white background. Wearing black t-shirt.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, asymmetry, watermark, text, logo, blur, low resolution"
+    },
+    {
+      "id": "male_10",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 30–40 year old male. Medium-dark skin tone. Completely shaved head. Clean-shaven face. Neutral calm expression. Plain beige background. Wearing dark grey t-shirt.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, asymmetry, watermark, text, logo, blur, low resolution"
+    },
+    {
+      "id": "male_11",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 27–34 year old Mediterranean male. Olive skin tone. Short dark hair, natural texture. Light trimmed beard. Neutral expression, direct eye contact. Plain light grey background. Wearing simple navy t-shirt.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, asymmetry, watermark, text, logo, blur, low resolution"
+    },
+    {
+      "id": "male_12",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 22–28 year old male. Very fair skin tone. Natural blonde hair, short and clean. Clean-shaven face. Neutral calm expression. Plain off-white background. Wearing white t-shirt.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, asymmetry, watermark, text, logo, blur, low resolution"
+    },
+    {
+      "id": "male_13",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 30–38 year old Middle Eastern male. Warm olive-brown skin tone. Short black hair. Neatly trimmed beard. Neutral expression. Plain beige background. Wearing charcoal t-shirt.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, asymmetry, watermark, text, logo, blur, low resolution"
+    },
+    {
+      "id": "male_14",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 24–30 year old male. Medium skin tone. Short textured haircut. Clean-shaven. Square jawline, balanced proportions. Neutral expression. Plain white background. Wearing light grey t-shirt.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, asymmetry, watermark, text, logo, blur, low resolution"
+    },
+    {
+      "id": "male_15",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 28–35 year old male. Medium-dark skin tone. Short cropped hair. Clean face. Relaxed neutral expression (no smile). Plain light beige background. Wearing black t-shirt.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, asymmetry, watermark, text, logo, blur, low resolution"
+    },
+    {
+      "id": "male_16",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 24–32 year old East African male. Deep dark skin tone. Short tightly curled hair. Clean-shaven face. Neutral expression, relaxed eyes. Plain light grey background. Wearing simple black t-shirt.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, asymmetry, watermark, text, logo, blur, low resolution"
+    },
+    {
+      "id": "male_17",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 30–38 year old male. Medium skin tone. Short classic haircut. Clean-shaven. Slightly broader cheeks, natural proportions. Neutral expression. Plain beige background. Wearing dark navy t-shirt.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, asymmetry, watermark, text, logo, blur, low resolution"
+    },
+    {
+      "id": "male_18",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 26–34 year old male. Light-medium skin tone. Long dark hair tied back neatly. Light stubble. Neutral expression. Plain off-white background. Wearing light grey t-shirt.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, asymmetry, watermark, text, logo, blur, low resolution"
+    },
+    {
+      "id": "male_19",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 22–29 year old male. Fair to light-medium skin tone. Short hair with naturally higher forehead. Clean-shaven. Neutral expression. Plain white background. Wearing charcoal t-shirt.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, asymmetry, watermark, text, logo, blur, low resolution"
+    },
+    {
+      "id": "male_20",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 40–50 year old male. Medium-light skin tone. Short hair, slightly receding. Light rugged stubble. Subtle sun exposure marks. Neutral expression. Plain beige background. Wearing dark grey t-shirt.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, asymmetry, watermark, text, logo, blur, low resolution"
+    },
+    {
+      "id": "male_21",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 27–34 year old male. Medium skin tone with slight redness around nose and cheeks. Short dark hair, not perfectly styled. Uneven light stubble. Very subtle facial asymmetry (natural). Neutral relaxed expression. Plain off-white wall background (real indoor wall, not studio-perfect). Wearing plain black cotton t-shirt.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, symmetry perfection, watermark, text, logo, blur, low resolution"
+    },
+    {
+      "id": "male_22",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 32–40 year old male. Light olive skin tone. Short slightly receding hairline. Patchy beard growth (not perfectly filled). Subtle under-eye darkness. Neutral expression. Plain light grey background with slight texture. Wearing dark navy t-shirt.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, symmetry perfection, watermark, text, logo, blur, low resolution"
+    },
+    {
+      "id": "male_23",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 23–29 year old male. Medium-dark skin tone with natural tonal variation. Short curly hair. Clean-shaven. Mild shine on forehead and nose (natural skin oil). Neutral expression. Plain beige wall background. Wearing light grey t-shirt.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, symmetry perfection, watermark, text, logo, blur, low resolution"
+    },
+    {
+      "id": "male_24",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 35–45 year old male. Medium-light skin tone. Short hair, slightly uneven hairline. Light stubble with grey strands. Subtle fine lines on forehead. Relaxed neutral expression (not posing). Plain white wall background. Wearing dark charcoal t-shirt.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, symmetry perfection, watermark, text, logo, blur, low resolution"
+    },
+    {
+      "id": "male_25",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 21–26 year old male. Light-medium skin tone. Messy short hair, slightly unbalanced. Clean face. Minor acne marks and uneven skin texture. Neutral expression. Plain off-white background. Wearing simple white t-shirt.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, symmetry perfection, watermark, text, logo, blur, low resolution"
+    },
+    {
+      "id": "male_26",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 26–34 year old male. Medium skin tone with uneven warmth. Short black hair, casually styled. Light stubble with uneven density. Very subtle camera noise visible (real sensor grain). Neutral expression. Plain off-white wall background. Wearing black cotton t-shirt.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, symmetry perfection, watermark, text, logo, blur, low resolution"
+    },
+    {
+      "id": "male_27",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 31–39 year old male. Light olive skin tone. Short hair, slightly uneven sides. Patchy beard growth. Mild under-eye darkness. Neutral expression. Plain beige wall with subtle shadow falloff. Wearing dark grey t-shirt.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, symmetry perfection, watermark, text, logo, blur, low resolution"
+    },
+    {
+      "id": "male_28",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 22–28 year old male. Light-medium skin tone. Messy short hair. Clean-shaven. Visible acne scars on cheeks. Neutral expression. Plain white wall background. Wearing white cotton t-shirt.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, symmetry perfection, watermark, text, logo, blur, low resolution"
+    },
+    {
+      "id": "male_29",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 29–36 year old male. Medium skin tone with slight redness around nose. Short textured haircut. Clean face. Natural shine on forehead. Neutral expression. Plain grey wall background. Wearing charcoal t-shirt.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, symmetry perfection, watermark, text, logo, blur, low resolution"
+    },
+    {
+      "id": "male_30",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 38–46 year old male. Light-medium skin tone. Receding hairline. Light stubble with grey strands. Fine forehead lines. Neutral expression. Plain off-white background. Wearing navy t-shirt.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, symmetry perfection, watermark, text, logo, blur, low resolution"
+    },
+    {
+      "id": "male_31",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 24–31 year old male. Medium-dark skin tone. Short curly hair. Clean face. Slight asymmetry in eye height (natural). Neutral expression. Plain beige wall background. Wearing black t-shirt.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, symmetry perfection, watermark, text, logo, blur, low resolution"
+    },
+    {
+      "id": "male_32",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 27–35 year old male. Medium skin tone. Short hair. Uneven beard line with sparse patches. Mild cheek redness. Neutral expression. Plain light grey wall background. Wearing dark green t-shirt.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, symmetry perfection, watermark, text, logo, blur, low resolution"
+    },
+    {
+      "id": "male_33",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 21–27 year old male. Fair skin tone. Short light brown hair. Clean face. Very mild highlight overexposure on forehead. Neutral expression. Plain white wall background. Wearing light grey t-shirt.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, symmetry perfection, watermark, text, logo, blur, low resolution"
+    },
+    {
+      "id": "male_34",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 33–41 year old male. Medium skin tone. Short hair. Clean-shaven. Soft shadow under jawline. Neutral expression. Plain beige background. Wearing dark charcoal t-shirt.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, symmetry perfection, watermark, text, logo, blur, low resolution"
+    },
+    {
+      "id": "male_35",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 25–33 year old male. Medium skin tone. Short casual haircut. Clean face. Minor skin texture variation. Neutral expression. Plain off-white background. Wearing black t-shirt.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, symmetry perfection, watermark, text, logo, blur, low resolution"
+    },
+    {
+      "id": "male_36",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 28–35 year old South Asian male. Medium brown skin tone with slight uneven pigmentation. Short hair with imperfect fade. Patchy stubble with uneven density. Slight facial asymmetry in eyebrows. Neutral expression, relaxed jaw. Plain warm beige wall background. Wearing faded black cotton t-shirt.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, perfect symmetry, watermark, text, logo, blur, low resolution"
+    },
+    {
+      "id": "male_37",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 34–41 year old Caucasian male. Light skin tone with visible redness around cheeks. Receding hairline, short cropped hair. Clean-shaven. Fine forehead lines and crow's feet. Neutral expression, slightly tired eyes. Plain off-white wall background. Wearing dark navy t-shirt.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, perfect symmetry, watermark, text, logo, blur, low resolution"
+    },
+    {
+      "id": "male_38",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 30–38 year old Middle Eastern male. Olive skin tone with subtle under-eye darkness. Short wavy hair. Light stubble with uneven beard line. Slight nose asymmetry. Neutral expression. Plain light grey wall background. Wearing charcoal t-shirt.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, perfect symmetry, watermark, text, logo, blur, low resolution"
+    },
+    {
+      "id": "male_39",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 26–33 year old Black male. Deep brown skin tone with natural texture variation. Short tight curls. Clean-shaven. Visible pores and mild cheek texture. Neutral expression. Plain beige wall background. Wearing dark green t-shirt.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, perfect symmetry, watermark, text, logo, blur, low resolution"
+    }
+  ],
+  "female": [
+    {
+      "id": "female_01",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 22–28 year old female, medium skin tone. Straight black hair, shoulder length. Minimal natural makeup. Neutral expression, looking directly at camera. Soft daylight, even lighting. Plain grey background. Wearing simple black top.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, asymmetry, watermark, text, logo, blur, low resolution"
+    },
+    {
+      "id": "female_02",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 25–32 year old female, fair skin tone. Light brown hair, loosely tied back. Very minimal makeup, natural skin texture. Soft window lighting. Neutral expression. Plain beige background. Wearing white top.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, asymmetry, watermark, text, logo, blur, low resolution"
+    },
+    {
+      "id": "female_03",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 24–30 year old female, dark skin tone. Natural curly hair, loose. No heavy makeup, realistic skin texture. Soft natural daylight. Neutral calm expression. Plain off-white background. Wearing dark grey top.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, asymmetry, watermark, text, logo, blur, low resolution"
+    },
+    {
+      "id": "female_04",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 28–35 year old female, olive skin tone. Wavy dark brown hair. Soft studio lighting, cinematic but natural. Neutral expression, relaxed face. Plain muted brown background. Wearing navy blue top.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, asymmetry, watermark, text, logo, blur, low resolution"
+    },
+    {
+      "id": "female_05",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 20–24 year old female, medium skin tone. Straight long hair. Very light makeup only for skin tone balance. Natural daylight, soft shadows. Neutral expression. Plain white background. Wearing light grey top.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, asymmetry, watermark, text, logo, blur, low resolution"
+    },
+    {
+      "id": "female_06",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 24–30 year old South Asian female. Warm brown skin tone. Straight black hair, shoulder length. Minimal natural makeup. Neutral expression. Plain light grey background. Wearing simple charcoal top.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, asymmetry, watermark, text, logo, blur, low resolution"
+    },
+    {
+      "id": "female_07",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 22–28 year old East Asian female. Fair skin tone. Straight black hair, long. Very light makeup. Neutral expression, soft eyes. Plain off-white background. Wearing white top.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, asymmetry, watermark, text, logo, blur, low resolution"
+    },
+    {
+      "id": "female_08",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 35–45 year old female. Light olive skin tone. Wavy dark brown hair, shoulder length. Minimal makeup. Calm neutral expression. Plain dark grey background. Wearing navy blue top.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, asymmetry, watermark, text, logo, blur, low resolution"
+    },
+    {
+      "id": "female_09",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 23–29 year old female. Medium-dark skin tone. Natural curly hair, loose. No heavy makeup. Neutral expression. Plain white background. Wearing black top.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, asymmetry, watermark, text, logo, blur, low resolution"
+    },
+    {
+      "id": "female_10",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 20–25 year old female. Medium skin tone. Straight long hair. Very light makeup only for skin tone balance. Neutral expression. Plain beige background. Wearing light grey top.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, asymmetry, watermark, text, logo, blur, low resolution"
+    },
+    {
+      "id": "female_11",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 25–32 year old Mediterranean female. Olive skin tone. Long wavy dark brown hair. Minimal makeup. Neutral expression. Plain light grey background. Wearing navy blue top.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, asymmetry, watermark, text, logo, blur, low resolution"
+    },
+    {
+      "id": "female_12",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 21–27 year old female. Very fair skin tone. Natural blonde hair, straight. Minimal makeup. Neutral calm expression. Plain off-white background. Wearing white top.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, asymmetry, watermark, text, logo, blur, low resolution"
+    },
+    {
+      "id": "female_13",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 28–36 year old Middle Eastern female. Warm olive skin tone. Straight black hair, shoulder length. Minimal makeup. Neutral expression. Plain beige background. Wearing charcoal top.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, asymmetry, watermark, text, logo, blur, low resolution"
+    },
+    {
+      "id": "female_14",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 26–33 year old female. Medium skin tone. Hair pulled back neatly. Pronounced natural cheekbones. Minimal makeup. Neutral expression. Plain white background. Wearing light grey top.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, asymmetry, watermark, text, logo, blur, low resolution"
+    },
+    {
+      "id": "female_15",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 42–55 year old female. Light-medium skin tone. Shoulder-length slightly wavy hair. Visible natural aging lines. Minimal makeup. Calm neutral expression. Plain light beige background. Wearing dark grey top.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, asymmetry, watermark, text, logo, blur, low resolution"
+    },
+    {
+      "id": "female_16",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 23–31 year old East African female. Deep dark skin tone. Short natural curls. Minimal makeup. Neutral expression. Plain light grey background. Wearing simple black top.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, asymmetry, watermark, text, logo, blur, low resolution"
+    },
+    {
+      "id": "female_17",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 25–33 year old female. Medium skin tone. Straight shoulder-length hair. Soft rounded facial structure. Very light makeup. Neutral expression. Plain beige background. Wearing navy top.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, asymmetry, watermark, text, logo, blur, low resolution"
+    },
+    {
+      "id": "female_18",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 21–28 year old female. Light-medium skin tone. Short cropped haircut. Minimal makeup. Neutral confident expression. Plain off-white background. Wearing light grey top.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, asymmetry, watermark, text, logo, blur, low resolution"
+    },
+    {
+      "id": "female_19",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 29–37 year old female. Medium skin tone. Hair pulled back loosely. Visible pores and natural skin texture. Minimal makeup. Neutral expression. Plain white background. Wearing charcoal top.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, asymmetry, watermark, text, logo, blur, low resolution"
+    },
+    {
+      "id": "female_20",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 45–60 year old female. Light-medium skin tone. Short softly styled hair. Natural fine lines. Minimal makeup. Calm neutral expression. Plain light beige background. Wearing dark grey top.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, asymmetry, watermark, text, logo, blur, low resolution"
+    },
+    {
+      "id": "female_21",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 24–30 year old female. Medium skin tone with uneven pigmentation. Straight dark hair, slightly frizzy ends. Minimal makeup (concealer only). Visible pores and faint blemishes. Neutral relaxed expression. Plain light grey wall background. Wearing black cotton top.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, symmetry perfection, watermark, text, logo, blur, low resolution"
+    },
+    {
+      "id": "female_22",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 30–38 year old female. Light olive skin tone. Wavy shoulder-length hair. Natural under-eye texture and faint lines. Very light makeup. Neutral expression. Plain beige wall background. Wearing navy top.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, symmetry perfection, watermark, text, logo, blur, low resolution"
+    },
+    {
+      "id": "female_23",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 21–26 year old female. Fair skin tone with slight redness. Hair tied back loosely, flyaway strands. No makeup. Subtle acne marks. Neutral expression. Plain white wall background. Wearing light grey t-shirt.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, symmetry perfection, watermark, text, logo, blur, low resolution"
+    },
+    {
+      "id": "female_24",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 40–50 year old female. Medium-light skin tone. Hair pulled back casually. Visible fine lines around eyes and mouth. Minimal makeup. Calm neutral expression. Plain off-white background. Wearing dark grey top.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, symmetry perfection, watermark, text, logo, blur, low resolution"
+    },
+    {
+      "id": "female_25",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 26–34 year old female. Medium-dark skin tone. Natural curly hair with slight frizz. Uneven skin tone and natural shine. Very minimal makeup. Neutral expression. Plain beige wall background. Wearing black t-shirt.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, symmetry perfection, watermark, text, logo, blur, low resolution"
+    },
+    {
+      "id": "female_26",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 26–34 year old female. Medium skin tone with uneven complexion. Loose straight hair with flyaways. Minimal makeup. Visible pores and slight redness. Neutral expression. Plain off-white wall background. Wearing black cotton top.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, symmetry perfection, watermark, text, logo, blur, low resolution"
+    },
+    {
+      "id": "female_27",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 21–27 year old female. Light-medium skin tone. Hair tied back casually. No foundation makeup. Minor acne scars. Neutral relaxed expression. Plain beige wall background. Wearing light grey t-shirt.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, symmetry perfection, watermark, text, logo, blur, low resolution"
+    },
+    {
+      "id": "female_28",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 29–37 year old female. Medium-dark skin tone. Natural curly hair with mild frizz. Visible natural shine on nose and forehead. Very minimal makeup. Neutral expression. Plain grey wall background. Wearing dark navy top.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, symmetry perfection, watermark, text, logo, blur, low resolution"
+    },
+    {
+      "id": "female_29",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 38–46 year old female. Light-medium skin tone. Hair pulled back loosely. Fine lines around eyes and mouth. Minimal makeup. Calm neutral expression. Plain off-white wall background. Wearing charcoal top.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, symmetry perfection, watermark, text, logo, blur, low resolution"
+    },
+    {
+      "id": "female_30",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 24–32 year old female. Medium skin tone. Straight shoulder-length hair, slightly uneven. Minimal makeup. Natural skin texture with faint blemishes. Neutral expression. Plain beige wall background. Wearing black t-shirt.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, symmetry perfection, watermark, text, logo, blur, low resolution"
+    },
+    {
+      "id": "female_31",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 25–33 year old female. Medium skin tone with uneven pigmentation. Straight hair with flyaways. Minimal makeup. Neutral expression. Plain off-white wall background. Wearing black cotton top.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, symmetry perfection, watermark, text, logo, blur, low resolution"
+    },
+    {
+      "id": "female_32",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 24–30 year old South Asian female. Medium brown skin tone with uneven pigmentation. Loose straight hair with flyaways. No makeup. Visible under-eye texture. Neutral expression. Plain warm beige wall background. Wearing black cotton top.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, perfect symmetry, watermark, text, logo, blur, low resolution"
+    },
+    {
+      "id": "female_33",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 32–40 year old Caucasian female. Fair skin tone with redness around nose. Hair tied back loosely. Fine lines around eyes. Minimal makeup. Neutral expression. Plain off-white wall background. Wearing dark grey top.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, perfect symmetry, watermark, text, logo, blur, low resolution"
+    },
+    {
+      "id": "female_34",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 21–26 year old Latina female. Light-medium skin tone. Wavy hair, slightly frizzy. Visible acne marks on cheeks. Very light makeup. Neutral expression. Plain white wall background. Wearing light blue cotton top.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, perfect symmetry, watermark, text, logo, blur, low resolution"
+    },
+    {
+      "id": "female_35",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 29–36 year old East Asian female. Light skin tone with natural shine. Straight shoulder-length hair. Visible pores and subtle skin texture. Minimal makeup. Neutral expression. Plain light grey wall background. Wearing cream-colored top.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, perfect symmetry, watermark, text, logo, blur, low resolution"
+    },
+    {
+      "id": "female_36",
+      "prompt": "Ultra-realistic professional photography, real human model, photo-quality, no AI look, no cartoon, no illustration, no painting. Natural skin texture, visible pores, realistic facial imperfections. Shot on full-frame DSLR, 85mm lens, f/1.8, soft natural lighting. Sharp focus, high dynamic range, realistic shadows. 35–43 year old Black female. Deep brown skin tone with natural texture variation. Natural curls, slightly unshaped. Visible smile lines even with neutral face. Minimal makeup. Neutral expression. Plain beige wall background. Wearing dark navy cotton top.",
+      "negativePrompt": "cartoon, anime, illustration, CGI, 3D render, doll, plastic skin, over-smooth skin, beauty filter, exaggerated facial features, distorted face, perfect symmetry, watermark, text, logo, blur, low resolution"
+    }
+  ]
+}

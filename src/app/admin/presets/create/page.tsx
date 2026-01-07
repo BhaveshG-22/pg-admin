@@ -87,6 +87,30 @@ export default function CreatePresetPage() {
         throw new Error(data.error || 'Failed to create preset')
       }
 
+      // If generateExamples is enabled, trigger example generation
+      if (generateExamples && data.id) {
+        try {
+          const exampleRes = await fetch(`/api/admin/presets/${data.id}/generate-examples`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              examplesPerModel,
+              totalModels
+            }),
+          })
+
+          const exampleData = await exampleRes.json()
+
+          if (!exampleRes.ok) {
+            console.error('Failed to queue example generation:', exampleData.error)
+            // Don't throw error - preset was created successfully
+          }
+        } catch (exampleErr) {
+          console.error('Error queueing example generation:', exampleErr)
+          // Don't throw error - preset was created successfully
+        }
+      }
+
       router.push('/admin/presets')
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to create preset')

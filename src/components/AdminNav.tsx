@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { LayoutDashboard, Image, Users, Menu, X } from 'lucide-react'
+import { LayoutDashboard, Image, Users, Menu, X, User } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 const navItems = [
@@ -21,6 +21,11 @@ const navItems = [
     name: 'Users',
     href: '/admin/users',
     icon: Users,
+  },
+  {
+    name: 'Models',
+    href: '/admin/models',
+    icon: User,
   },
 ]
 

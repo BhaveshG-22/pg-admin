@@ -77,6 +77,27 @@ export async function uploadToS3(
   })
 }
 
+export async function requestPresignedUrlForModel(file: File): Promise<PresignResponse> {
+  const response = await fetch('/api/admin/models/presign', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      filename: file.name,
+      mimeType: file.type,
+      fileSize: file.size,
+    }),
+  })
+
+  if (!response.ok) {
+    const error = await response.json()
+    throw new Error(error.error || 'Failed to get presigned URL')
+  }
+
+  return response.json()
+}
+
 export async function uploadThumbnail(options: UploadOptions) {
   const { file, onProgress, onSuccess, onError } = options
 
@@ -86,6 +107,28 @@ export async function uploadThumbnail(options: UploadOptions) {
     await uploadToS3(presignData.url, file, presignData.headers, onProgress)
 
     // Convert S3 key to full URL (using admin bucket for preset thumbnails)
+    const bucket = process.env.NEXT_PUBLIC_S3_ADMIN_BUCKET || 'pixelglow-admin-assets'
+    const region = process.env.NEXT_PUBLIC_AWS_REGION || 'us-east-1'
+    const fullUrl = `https://${bucket}.s3.${region}.amazonaws.com/${presignData.key}`
+
+    onSuccess?.(fullUrl)
+    return { url: fullUrl, key: presignData.key }
+  } catch (error) {
+    const errorMessage = error instanceof Error ? error.message : 'Upload failed'
+    onError?.(errorMessage)
+    throw error
+  }
+}
+
+export async function uploadModelImage(options: UploadOptions) {
+  const { file, onProgress, onSuccess, onError } = options
+
+  try {
+    const presignData = await requestPresignedUrlForModel(file)
+
+    await uploadToS3(presignData.url, file, presignData.headers, onProgress)
+
+    // Convert S3 key to full URL (using admin bucket for model images)
     const bucket = process.env.NEXT_PUBLIC_S3_ADMIN_BUCKET || 'pixelglow-admin-assets'
     const region = process.env.NEXT_PUBLIC_AWS_REGION || 'us-east-1'
     const fullUrl = `https://${bucket}.s3.${region}.amazonaws.com/${presignData.key}`
