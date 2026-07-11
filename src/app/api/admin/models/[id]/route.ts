@@ -11,16 +11,6 @@ export async function GET(
 
     const model = await prisma.globalModel.findUnique({
       where: { id },
-      include: {
-        modelUsage: {
-          include: {
-            preset: {
-              select: { id: true, title: true, slug: true },
-            },
-          },
-          orderBy: { usedAt: 'desc' },
-        },
-      },
     })
 
     if (!model) {

@@ -159,7 +159,7 @@ async function generateModelImage(
  * Generate images with concurrency limit
  */
 async function generateWithConcurrency(
-  tasks: Array<{ promptId: string; gender: 'male' | 'female'; prompt: ModelPrompt }>,
+  tasks: Array<{ gender: 'male' | 'female'; prompt: ModelPrompt }>,
   concurrency: number = 2
 ): Promise<{ success: number; failed: number }> {
   let successCount = 0
