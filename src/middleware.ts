@@ -1,7 +1,7 @@
 import { clerkMiddleware, clerkClient, createRouteMatcher } from '@clerk/nextjs/server'
 import { NextResponse } from 'next/server'
 
-const isPublicRoute = createRouteMatcher(['/sign-in(.*)'])
+const isPublicRoute = createRouteMatcher(['/sign-in(.*)', '/unauthorized'])
 
 export default clerkMiddleware(async (auth, req) => {
   if (isPublicRoute(req)) {
@@ -17,7 +17,7 @@ export default clerkMiddleware(async (auth, req) => {
   )?.emailAddress
 
   if (email !== process.env.ADMIN_EMAIL) {
-    return new NextResponse('Forbidden', { status: 403 })
+    return NextResponse.redirect(new URL('/unauthorized', req.url))
   }
 })
 

@@ -34,7 +34,7 @@ export function AdminNav() {
   const pathname = usePathname()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
-  if (pathname?.startsWith('/sign-in')) {
+  if (pathname?.startsWith('/sign-in') || pathname?.startsWith('/unauthorized')) {
     return null
   }
 
